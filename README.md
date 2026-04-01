@@ -27,3 +27,5 @@ The development branch contains ongoing improvements and new content for the Hel
 ## Getting Started
 
 For information about the Hello, Python! course itself, visit the [main course repository](https://github.com/lucasppl/hello-python) and our [social medias](beacons.ai/hellopython).
+
+![logo](img/logo.png)
