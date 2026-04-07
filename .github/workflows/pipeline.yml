@@ -15,7 +15,7 @@ jobs:
           python-version: "3.10"
 
       - name: 3. Instalar dependências de Teste
-        run: pip install pytest pytest-junitxml
+        run: pip install pytest
 
       - name: 4. Executar Testes e Gerar JUnit (Stage de Test)
         run: pytest --junitxml=relatorio_testes.xml
