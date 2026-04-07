@@ -1,0 +1,38 @@
+on:
+  push:
+    branches: ["main", "test"] 
+
+jobs:
+  build_e_testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Baixar o código
+        uses: actions/checkout@v4
+
+      - name: 2. Preparar o Python (Build) # Por python não compilar igual java, aqui só preparamos o ambiente
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: 3. Instalar dependências de Teste
+        run: pip install pytest pytest-junitxml
+
+      - name: 4. Executar Testes e Gerar JUnit (Stage de Test)
+        run: pytest --junitxml=relatorio_testes.xml
+
+      - name: 5. Salvar Relatório
+        # gerar relatório mesmo que os testes falhem
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-junit
+          path: relatorio_testes.xml
+
+  deploy_simulado:
+    needs: build_e_testes
+    runs-on: ubuntu-latest
+    # "Executar deploy somente na branch main"
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Simular Deploy
+        run: echo "deploy realizado com sucesso!"
