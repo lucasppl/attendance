@@ -18,7 +18,7 @@ jobs:
         run: pip install pytest
 
       - name: 4. Executar Testes e Gerar JUnit (Stage de Test)
-        run: pytest --junitxml=relatorio_testes.xml
+        run: pytest attendance_test.py --junitxml=relatorio_testes.xml
 
       - name: 5. Salvar Relatório
         # gerar relatório mesmo que os testes falhem
